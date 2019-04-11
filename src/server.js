@@ -16,15 +16,15 @@ io.on('connection', socket => {
 
 mongoose.connect("mongodb+srv://admin:luc704605@cluster0-o6huq.mongodb.net/test?retryWrites=true", { useNewUrlParser: true });
 
+app.use((req, res, next) => {
+    req.io = io;
+    return next;
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')));
 
 app.use(require('./routes'));
 
-app.use((req, res, next) => {
-    req.io = io;
-    return next;
-});
-
-server.listen(process.env.PORT || 3050);
+app.listen(process.env.PORT || 3050);
