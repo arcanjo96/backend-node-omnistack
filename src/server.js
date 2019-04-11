@@ -14,7 +14,7 @@ io.on('connection', socket => {
     });
 });
 
-mongoose.connect("mongodb://localhost:27017/omnistack", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://admin:luc704605@cluster0-o6huq.mongodb.net/test?retryWrites=true", { useNewUrlParser: true });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
